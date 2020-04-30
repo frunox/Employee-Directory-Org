@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import Container from "../components/Container";
-import SearchForm from "../components/SearchForm";
-import SearchResults from "../components/SearchResults";
+import Banner from "../components/Banner";
+// import SearchForm from "../components/SearchForm";
+import SearchResults from "../components/SearchButton";
 
 class Home extends Component {
     state = {
@@ -12,9 +13,9 @@ class Home extends Component {
         error: ""
     };
 
-    // When the component mounts, get a list of all available base breeds and update this.state.breeds
+    // When the component mounts, get a list of employees and update this.state.breeds
     componentDidMount() {
-        API.getBaseBreedsList()
+        API.getEmployeeList()
             .then(res => this.setState({ breeds: res.data.message }))
             .catch(err => console.log(err));
     }
@@ -37,13 +38,14 @@ class Home extends Component {
     render() {
         return (
             <div>
+                <Banner />
                 <Container style={{ minHeight: "80%" }}>
-                    <h1 className="text-center">Search By Breed!</h1>
-                    <SearchForm
+
+                    {/* <SearchForm
                         handleFormSubmit={this.handleFormSubmit}
                         handleInputChange={this.handleInputChange}
                         breeds={this.state.breeds}
-                    />
+                    /> */}
                     <SearchResults results={this.state.results} />
                 </Container>
             </div>
